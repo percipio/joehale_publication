@@ -1,0 +1,11 @@
+/* Image */
+img {
+  max-width: 100%;
+  margin: 0;
+}
+
+@mixin darktheme {
+  img:not(.header__logo) {
+    filter: brightness(.8) contrast(1.2);
+  }
+}

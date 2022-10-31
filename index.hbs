@@ -1,0 +1,69 @@
+{{!< default}}
+
+{{!-- Everything in a container --}}
+<div class="container wrapper">
+  
+  <div class="home-layout" data-layout="{{@custom.home_page_layout}}" {{#is "home"}}data-bg-accent="{{@custom.background_accent}}"{{/is}}>
+    {{!-- Hero section --}}
+    {{#is "home"}}
+      {{> hero}}
+    {{/is}}
+
+    <div class="home-content" data-style="{{@custom.post_feed_layout}}">
+      {{!-- Featured posts --}}
+      {{#if @custom.featured_posts_section}}
+        {{#is "home"}}
+          {{#get "posts" include="authors,tags,tiers" filter="featured:true" limit="all"}}
+            {{#if posts}}
+              <div class="featured-posts">
+                <span class="section-title lg">{{t "Featured posts"}}</span>
+                <div class="post-feed m-b-xl" data-feed-layout="{{@custom.post_feed_layout}}">
+                  {{#foreach posts}}
+                    {{> post-card }}
+                  {{/foreach}}
+                </div>
+              </div>
+            {{/if}}
+          {{/get}}
+        {{/is}}
+      {{/if}}
+
+      {{!-- Post feed --}}
+      <div class="latest-posts">
+        <span class="section-title lg">{{t "Latest posts"}}{{#is "paged"}} (<i>{{t "Page"}} {{pagination.page}}</i>){{/is}}</span>
+        <div class="post-feed js-post-feed" data-feed-layout="{{@custom.post_feed_layout}}">
+          {{#foreach posts}}
+            {{#if @custom.featured_posts_section}}
+              {{!-- Skip featured posts --}}
+              {{#unless featured}}
+                {{> post-card }}
+              {{/unless}}
+            {{else}} 
+              {{> post-card }}
+            {{/if}}
+          {{/foreach}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- Pagination --}}
+  {{pagination}}
+
+  {{!-- Featured tags section --}}
+  {{#is "home"}}
+    {{#match @custom.featured_tags_slugs "!=" ""}}
+      {{#get "tags" filter="slug:[{{@custom.featured_tags_slugs}}]" include="count.posts" order="count.posts desc" limit="all"}}
+        {{#if tags}}
+          <span class="section-title lgs m-b">{{t "Explore topics"}}</span>
+          <div class="grid grid-tags m-b-lg">
+            {{#foreach tags}}
+              {{> tag-card }}
+            {{/foreach}}
+          </div>
+        {{/if}}
+      {{/get}}
+    {{/match}}
+  {{/is}}
+
+</div>

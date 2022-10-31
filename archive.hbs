@@ -1,0 +1,45 @@
+{{!< default}}
+
+{{!-- Archive Page --}}
+{{#page}} 
+  {{> post-hero    
+    image_style="default"
+  }}
+  <div class="post-hero__excerpt text-acc text-center text-11">
+    {{#get "posts" limit="1"}}
+      {{t "Browse the complete archive of {total} posts." total=pagination.total}}
+    {{/get}}
+  </div>
+{{else}}
+  <div class="post-hero is-page flex flex-col flex-cc m-b-xl">
+    <h1 class="post-hero__title text-center">{{t "Archive"}}</h1>
+    <div class="post-hero__excerpt text-acc text-center text-11">
+      {{#get "posts" limit="1"}}
+        {{t "Browse the complete archive of {total} posts." total=pagination.total}}
+      {{/get}}
+    </div>
+  </div>
+{{/page}}
+
+<div class="container content-width {{post_class}} post-access-{{visibility}}">
+  <div class="archive js-post-feed">
+    {{#foreach posts}}
+      <div class="archive-post-wrap post-month-{{date format="M"}} js-post-card"> 
+        <span class="archive-post-label p-b-sm fw-700 opacity-060">{{date format="MMMM YYYY"}}</span>
+        <article class="archive-post">
+          <time datetime="{{date published_at format="YYYY-MM-DD"}}"
+            class="text-acc">{{date published_at format="DD MMM"}}
+          </time>
+
+          <h2 class="archive-post__title fw-500 m-0 text-acc">
+            {{#link href=url class="archive-post__link flex-1"}}{{title}}{{/link}}
+          </h2>
+        </article>
+      </div>
+    {{/foreach}}
+  </div>
+
+  {{!-- Pagination --}}
+  {{pagination}}
+  
+</div>

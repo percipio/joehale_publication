@@ -1,0 +1,17 @@
+<div class="pagination-wrap">
+  {{!-- Classic pagination --}}
+  <nav class="pagination">
+    <a class="prev-posts{{#unless prev}} disabled{{/unless}}" href="{{#if prev}}{{page_url prev}}{{else}}javascript:{{/if}}">
+      {{> icon name="arrow-left" size="sm"}}<span class="m-l-xs">{{t "Prev"}}</span>
+    </a>
+    <span class="page-number">{{t "Page {current_page} of {total_pages}" current_page=page total_pages=pages}}</span>
+    <a class="next-posts{{#unless next}} disabled{{/unless}}" href="{{#if next}}{{page_url next}}{{else}}javascript:{{/if}}">
+      <span class="m-r-xs">{{t "Next"}}</span>{{> icon name="arrow-right" size="sm"}}
+    </a>
+  </nav>
+
+  {{!-- Load more button --}}
+  {{!-- <button class="btn btn--wide btn--bordered js-load-more">
+    {{t "Load more posts"}}
+  </button> --}}
+</div>

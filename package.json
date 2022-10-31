@@ -1,0 +1,216 @@
+{
+  "name": "tuuli",
+  "description": "Tuuli Ghost Theme",
+  "demo": "https://tuuli.bironthemes.com",
+  "version": "1.1.2",
+  "engines": {
+    "ghost": ">=5.0.0"
+  },
+  "author": {
+    "name": "Biron Themes",
+    "email": "bironthemes@gmail.com",
+    "url": "https://bironthemes.com"
+  },
+  "gpm": {
+    "type": "theme",
+    "categories": [
+      "Blog",
+      "Newsletter",
+      "Personal"
+    ]
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bironthemes/tuuli-ghost.git"
+  },
+  "scripts": {
+    "dev": "gulp",
+    "zip": "gulp zip",
+    "test": "gscan ."
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.0",
+    "@babel/preset-env": "^7.18.0",
+    "beeper": "^2.1.0",
+    "browser-sync": "^2.26.13",
+    "cssnano": "^5.0.4",
+    "cssnano-preset-advanced": "^5.1.1",
+    "gscan": "^4.20.0",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^9.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-zip": "^5.1.0",
+    "postcss": "^8.2.13",
+    "postcss-cssential": "^1.1.0",
+    "postcss-import": "^14.0.2",
+    "postcss-mixins": "^9.0.2",
+    "postcss-nested": "^5.0.5",
+    "postcss-preset-env": "^7.5.0",
+    "pump": "^3.0.0"
+  },
+  "dependencies": {
+    "@tryghost/content-api": "^1.9.2",
+    "fitvids": "^2.1.1",
+    "fslightbox": "^3.3.0",
+    "fuse.js": "^6.6.2",
+    "headroom.js": "^0.12.0",
+    "lazysizes": "^5.3.0",
+    "tiny-slider": "^2.9.3",
+    "tocbot": "^4.12.0"
+  },
+  "config": {
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "system",
+          "light",
+          "dark",
+          "midnight",
+          "ivory",
+          "skyblue"
+        ],
+        "default": "system"
+      },
+      "font_family": {
+        "type": "select",
+        "options": [
+          "System font",
+          "Literata & Inter",
+          "Inter",
+          "Bitter",
+          "Outfit",
+          "Space Grotesk",
+          "Inconsolata"
+        ],
+        "default": "System font"
+      },
+      "header_position": {
+        "type": "select",
+				"options": [
+					"normal",
+					"sticky",
+					"floating"
+				],
+        "default": "normal"
+      },
+      "search_type": {
+        "type": "select",
+				"options": [
+					"native",
+					"custom",
+					"none"
+				],
+        "default": "native"
+      },
+      "use_portal_links": {
+        "type": "boolean",
+        "default": true
+      },
+      "cta_headline": {
+        "type": "text"
+      },
+      "cta_description": {
+        "type": "text"
+      },
+      "home_page_layout": {
+        "type": "select",
+        "options": [
+          "hero-as-left-sidebar",
+          "hero-as-right-sidebar",
+          "hero-with-image-on-left",
+          "hero-with-image-on-right",
+          "hero-with-image-below"
+        ],
+        "default": "hero-as-left-sidebar",
+        "group": "homepage"
+      },
+      "hero_source_page_slug": {
+        "type": "text",
+        "group": "homepage"
+      },
+      "post_feed_layout": {
+        "type": "select",
+        "options": [
+          "list-with-images",
+          "list",
+          "grid-with-images",
+          "grid"
+        ],
+        "default": "list-with-images",
+        "group": "homepage"
+      },
+      "featured_posts_section": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage"
+      },
+      "background_accent": {
+        "type": "select",
+        "options": [
+          "none",
+          "brand",
+          "mango",
+          "mojito",
+          "skyline",
+          "violet",
+          "cherry",
+          "sunrise"
+        ],
+        "default": "none",
+        "group": "homepage"
+      },
+      "featured_tags_slugs": {
+        "type": "text",
+        "default": "",
+        "group": "homepage"
+      },
+      "comment_plugin": {
+        "type": "select",
+        "options": [
+          "Native",
+          "Cove",
+          "Disqus",
+          "None"
+        ],
+        "default": "None",
+        "group": "post"
+      },
+      "comment_plugin_id": {
+        "type": "text",
+        "default": "",
+        "group": "post"
+      }
+    },
+    "card_assets": true,
+    "posts_per_page": 12,
+    "image_sizes": {
+      "xxs": {
+        "width": 30
+      },
+      "xs": {
+        "width": 100
+      },
+      "s": {
+        "width": 300
+      },
+      "m": {
+        "width": 600
+      },
+      "l": {
+        "width": 1000
+      },
+      "xl": {
+        "width": 2000
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{{!< default}}
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+
+  {{!-- Hero --}}
+  {{> post-hero 
+    image_style="background-full"
+  }}
+
+  <div class="container wrapper">
+    {{!-- Article --}}
+    <article class="{{post_class}} content post-access-{{visibility}}">
+      {{content}}
+    </article>
+
+    {{!-- Elements for posts (not pages) --}}
+    {{#is "post"}}
+      {{#if access}}
+        {{!-- Post share --}}
+        {{> social-share}}
+            
+        {{!-- Post author(s) section --}}
+        {{> post-author}}
+
+        {{!-- Include Comments --}}
+        {{> comments}}
+      {{/if}}
+
+      {{!-- Related posts --}}
+      {{> related-posts}}
+    {{/is}}
+  </div>
+
+  {{!-- Table of contents --}}
+  {{#has tag="#toc"}}
+    {{#if access}}
+      {{> toc}}
+    {{/if}}
+  {{/has}}
+
+{{/post}}

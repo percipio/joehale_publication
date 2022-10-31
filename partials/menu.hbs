@@ -1,0 +1,64 @@
+{{!-- Blog menu --}}
+<div class="menu js-menu">
+  <div class="menu__header flex content-start">
+    {{!-- Menu Button --}}
+    <button class="btn-toggle menu__toggle is-active js-menu-close"
+      type="button" title="{{t "Menu"}}" aria-label="{{t "Menu"}}">
+        <span></span>
+        <span></span>
+    </button>
+
+    {{!-- Native Search --}}
+    {{#match @custom.search_type "native"}}
+      <button class="btn-toggle header-search__toggle" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
+        {{> icon name="search"}}
+      </button>
+    {{/match}}
+
+    {{!-- Custom Search --}}
+    {{#match @custom.search_type "custom"}}
+      <form action="/search/" method="get" class="menu-search__form flex flex-1 radius js-search-form">
+        <input type="text" class="menu-search__input js-search-input" placeholder="{{t "Search"}}" autocomplete="off" 
+          title="{{t "Search"}}"  aria-label="{{t "Search"}}" aria-labelledby="search-input-label"
+          minlength="1" required/>
+        <button class="search__icon" type="submit" title="{{t "Search"}}" aria-label="{{t "Search"}}">
+          {{>icon name="search" size="md"}}
+        </button>
+      </form>
+
+      <span class="menu-search__helper" id="search-input-label">{{t "Press 'Enter' to search"}}</span>
+    {{/match}}
+
+  </div>
+
+  {{!-- Navigation --}}
+  <nav class="menu__navigation">
+    {{navigation}}
+
+    {{#if @site.secondary_navigation}}
+      {{navigation type="secondary"}}
+    {{/if}}
+  </nav>
+
+  {{!-- Subscribe --}}
+  <div class="menu__actions m-b flex w-100">
+    {{!-- Sign up Button --}}
+    {{#if @member}}
+      <a href="javascript:" data-members-signout class="btn signin-link btn--bordered radius m-r">
+        {{>icon name="logout" size="sm"}}{{t "Log out"}}
+      </a>
+      <a href="/account/"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}} class="btn signup-link btn--brand radius">
+        {{>icon name="user" size="sm"}}{{t "Account"}}
+      </a>
+    {{else}}
+      {{#if @site.members_enabled}}
+        <a href="/signin/"{{#if @custom.use_portal_links}} data-portal="signin"{{/if}} class="btn signin-link btn--bordered radius m-r">
+          {{>icon name="login" size="sm"}}{{t "Log in"}}
+        </a>
+        <a href="/signup/"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}} class="btn signup-link btn--brand radius">
+          {{>icon name="arrow-up-right" size="sm"}}{{t "Subscribe"}}
+        </a>
+      {{/if}}
+    {{/if}}
+  </div>
+</div>

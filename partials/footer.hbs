@@ -1,0 +1,44 @@
+{{!-- Site footer --}}
+<footer class="footer">
+  <div class="container wrapper">
+
+    {{!-- Footer Top --}}
+    <div class="footer__brand m-b-lg flex flex-wrap">
+      {{!-- Site title / logo --}}
+      {{#if @site.logo}}
+        <img class="footer__logo lazyload"
+          src="{{img_url @site.logo size="s"}}"
+          alt="{{@site.title}}"/>
+      {{else}}
+        <span class="footer__title">{{@site.title}}</span>
+      {{/if}}
+
+      <span class="flex-1"></span>
+
+      {{!-- Footer social --}}
+      <div class="footer__social flex flex-cc">
+        {{> social-links}}
+      </div>
+    </div>
+
+    {{!-- Site navigation --}}
+    {{navigation}}
+
+    {{!-- Secondary navigation --}}
+    {{#if @site.secondary_navigation}}
+      {{navigation type="secondary"}}
+    {{/if}}
+
+    {{!-- Footer copy & theme --}}
+    <div class="footer__bottom">
+      {{!-- Footer Copy --}}
+      <div class="footer__copy">
+        <span>&copy;{{date format="YYYY"}}&nbsp;{{#link href=@site.url}}{{@site.title}}{{/link}}.</span>
+      </div>
+
+      {{!-- Color scheme dropdown --}}
+      {{> color-scheme-dropdown}}
+    </div>
+
+  </div>
+</footer>

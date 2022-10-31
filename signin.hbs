@@ -1,0 +1,54 @@
+{{!< default}}
+
+<div class="signin-page flex flex-cc" data-image-style="right">
+  {{#if @member}}
+    {{!-- Logged in: Redirect to home --}}
+    <script>window.location = '{{@site.url}}';</script>
+  {{else}}
+    <div class="signin-page__content">
+      <a href="{{@site.url}}" class="signin-page__brand">
+        {{#if @site.logo}}
+          <img src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}"/>
+        {{else}}
+          {{@site.title}}
+        {{/if}}
+      </a>
+
+      <div class="signin-page__box">
+        <h1 class="signin-page__title">{{#page}}{{title}}{{else}}{{t "Sign in"}}{{/page}}</h1>
+        <p id="form-input-label" class="opacity-080">{{#page}}{{excerpt}}{{else}}{{t "Sign into your account again."}}{{/page}}</p>
+        {{> subscribe-form 
+          form_type="signin" 
+          form_class=""
+          button_class="uppercase btn--brand"
+          button_text=(t 'Send login link') 
+        }}
+        <p class="m-0 m-t text-center">
+          <small>{{t "Don't have an account yet?"}}
+            {{#link href="/signup/"}}{{t "Sign up"}}{{/link}}
+          </small>
+        </p>
+      </div>
+    </div>
+    {{#page}}
+      {{#if feature_image}}
+        <figure class="signin-page__media">
+          <img class="lazyload"
+            data-srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w,
+                        {{img_url feature_image size="l"}} 1000w,
+                        {{img_url feature_image size="xl"}} 2000w"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            data-sizes="auto"
+            data-src="{{img_url feature_image size="m"}}"
+            src="{{img_url feature_image size="xxs"}}"
+            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+          />
+          {{#if feature_image_caption}}
+            <figcaption>{{feature_image_caption}}</figcaption>
+          {{/if}}
+        </figure>
+      {{/if}}
+    {{/page}}
+  {{/if}}
+</div>

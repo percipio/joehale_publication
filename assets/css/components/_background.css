@@ -1,0 +1,63 @@
+/* Backgrounds */
+[data-bg-accent]:before {
+  content: "";
+  position: absolute;
+  width: max(20vw, 40rem);
+  height: max(20vw, 40rem);
+  z-index: -1;
+  filter: blur(100px) blur(100px);
+  border-radius: 50%;
+  opacity: 0.2;
+  top: 0;
+  right: 0;
+}
+
+[data-bg-accent="brand"]:before {
+  background-image: radial-gradient(var(--color-brand), var(--color-transparent));
+}
+
+[data-bg-accent="mango"]:before {
+  background-image: linear-gradient(135deg,#f09819, #edde5d);
+}
+
+[data-bg-accent="mojito"]:before {
+  background-image: linear-gradient(135deg,#1d976c, #93f9b9);
+}
+
+[data-bg-accent="skyline"]:before {
+  background-image: linear-gradient(135deg,#00c6fb,#005bea);
+  opacity: 0.12;
+}
+
+[data-bg-accent="violet"]:before {
+  background-image: linear-gradient(135deg,#ac32e4,#7918f2,#4801ff);
+  opacity: 0.08;
+}
+
+[data-bg-accent="cherry"]:before {
+  background-image: linear-gradient(135deg,#eb3349, #f45c43);
+  opacity: 0.12;
+}
+
+[data-bg-accent="sunrise"]:before {
+  background-image: linear-gradient(135deg,#ff512f, #f09819);
+  opacity: 0.12;
+}
+
+[data-bg-accent="none"]:before,
+[data-bg-accent="none"]:after {
+  display: none;
+}
+
+/* Dark theme */
+@mixin darktheme {
+  body[data-bg-accent] {
+    &:before, &:after { opacity: 0.15; }
+  }
+}
+
+/* iOS only styles */
+/* @supports (-webkit-touch-callout: none) and (not (translate: none)) {
+  *[data-bg="topography"]:before { opacity: 0.5; }
+  *[data-bg="dots"]:before { opacity: 0.1; }
+} */

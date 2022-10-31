@@ -1,0 +1,50 @@
+{{!< default}}
+
+<div class="container wrapper">
+  <div class="tag-layout" data-layout="hero-as-left-sidebar">
+    {{!-- Tag Hero --}}
+    {{#tag}}
+      <div class="tag-card is-tag m-b-lg"{{#if accent_color}} style="--color-accent: {{accent_color}}"{{/if}}>
+        {{!-- Tag image --}}
+        {{#if feature_image}}
+          <figure class="tag-card__media">
+            <img class="tag-card__img"
+              data-srcset="{{img_url feature_image size="xs"}} 100w,
+                      {{img_url feature_image size="s"}} 300w,
+                      {{img_url feature_image size="m"}} 600w"
+              srcset="{{img_url feature_image size="xxs"}}"
+              data-sizes="auto"
+              data-src="{{img_url feature_image size="xs"}}"
+              src="{{img_url feature_image size="xxs"}}"
+              alt="{{name}}"
+            />
+          </figure>
+        {{/if}}
+
+        {{!-- Tag content --}}
+        <div class="tag-card__content">
+          {{!-- Tag name --}}
+          <h1 class="tag-card__name">{{name}}</h1>
+          {{!-- Description & count --}}
+          {{#if description}}<p class="tag-card__description">{{description}}</p>{{/if}}
+          <span class="tag-card__count items-center text-09">
+            {{#plural ../pagination.total empty=(t 'No posts') singular=(t '1 post') plural=(t '% posts')}}{{/plural}}
+          </span>
+        </div>
+      </div>
+    {{/tag}}
+
+    {{!-- The Posts --}}
+    {{#if posts}}
+      <div class="post-feed js-post-feed" data-feed-layout="{{@custom.post_feed_layout}}">
+        {{#foreach posts}}
+          {{> post-card }}
+        {{/foreach}}
+      </div>
+    {{/if}}
+  </div>
+
+  {{!-- Pagination --}}
+  {{pagination}}
+  
+</div>

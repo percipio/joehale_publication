@@ -1,0 +1,90 @@
+.footer {
+  color: var(--color-text-acc);  
+  position: relative;
+  margin-top: var(--gap);
+  padding: var(--gap-lg) 0;
+
+  @media (--mq-md) {
+    margin-bottom: var(--gap);
+  }
+
+  &__logo { 
+    height: 48px;
+    object-fit: contain;
+    max-width: 300px;
+  }
+
+  &__title {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+  }
+
+  &__social {
+    a { 
+      color: var(--color-text-acc);
+      @mixin attention { color: var(--color-brand); } 
+    }
+    
+    a:not(:last-of-type) { margin-right: var(--gap); }
+
+    .icon {
+      @media (--mq-md) { 
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--color-text-acc);
+    margin-bottom: var(--gap);
+
+    li { margin-right: var(--gap); margin-bottom: var(--gap-xs); }
+
+    a {
+      border-radius: var(--global-radius);
+      display: inline-block;
+
+      @mixin attention { text-decoration: underline; }
+
+      @media (--mq-md) { font-size: 1.1rem; }
+      @media (--mq-lg) { font-size: 1.2rem; }
+      @media (--mq-xl) { font-size: 1.25rem; }
+    }
+
+    &:nth-of-type(2) { 
+      opacity: 0.8; 
+
+      a {
+        @media (--mq-lg) { font-size: 1.15rem; }
+      }
+    }
+  }
+
+  &__bottom { 
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__copy { 
+    opacity: 0.6; 
+    margin-bottom: var(--gap-sm);
+    flex: 0 1 100%;
+    font-size: 0.9rem; 
+
+    a { @mixin attention { text-decoration: underline; } }
+
+    @media (--mq-sm) { 
+      flex: 1;
+      font-size: 1rem; 
+      margin: 0;
+    }
+  }
+}

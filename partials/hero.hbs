@@ -1,0 +1,91 @@
+<div class="hero flex flex-col{{#if class}} {{class}}{{/if}}">
+  {{#if @custom.hero_source_page_slug}}
+    {{!-- Render data from page --}}
+    {{#get "pages" filter="slug:{{@custom.hero_source_page_slug}}" limit="1" as |hero|}}
+      {{#foreach hero}}
+        {{#if feature_image}}
+          <figure class="hero__media m-b">
+            <img class="lazyload hero__img" 
+                data-srcset="{{img_url feature_image size="xs"}} 100w,
+                        {{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w,
+                        {{img_url feature_image size="l"}} 1000w,
+                        {{img_url feature_image size="xl"}} 2000w"
+                srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+                data-sizes="auto"
+                data-src="{{img_url feature_image size="m"}}"
+                src="{{img_url feature_image size="xxs"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"/>
+          </figure>
+        {{/if}}
+
+        <div class="hero__content flex flex-col">
+          <h1 class="hero__title">{{title}}</h1>
+          <div id="hero-input-label" class="content no-overflow">
+            {{content}}
+          </div>
+          
+          {{!-- Subscribe form --}}
+          {{#if @site.members_enabled}}
+            {{#unless @site.members_invite_only}}
+              {{#unless @member}}
+                {{> subscribe-form 
+                  form_type="signup"
+                  form_style="inline"
+                  form_class=""
+                  input_class="bg-opaque"
+                  input_label="hero-input-label"
+                  button_text=(t 'Join now') 
+                  button_class="btn--brand btn--gradient uppercase"
+                }}
+              {{/unless}}
+            {{/unless}}
+          {{/if}}
+        </div>
+      {{/foreach}}
+    {{/get}}
+  {{else}}
+    {{!-- Default data --}}
+    {{!-- The site cover image --}}
+    {{#if @site.cover_image}}
+      <figure class="hero__media">
+        <img class="lazyload hero__img" 
+            data-srcset="{{img_url @site.cover_image size="xs"}} 100w,
+                    {{img_url @site.cover_image size="s"}} 300w,
+                    {{img_url @site.cover_image size="m"}} 600w,
+                    {{img_url @site.cover_image size="l"}} 1000w,
+                    {{img_url @site.cover_image size="xl"}} 2000w"
+            srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+            data-sizes="auto"
+            data-src="{{img_url @site.cover_image size="m"}}"
+            src="{{img_url @site.cover_image size="xxs"}}"
+            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"/>
+      </figure>
+    {{/if}}
+
+    {{!-- Hero Content --}}
+    <div class="hero__content flex flex-col">
+      <h1 class="hero__title">{{#if @custom.cta_headline}}{{@custom.cta_headline}}{{else}}{{@site.title}}{{/if}}</h1>
+      <div id="hero-input-label" class="hero__description text-acc m-b">
+        {{#if @custom.cta_description}}{{@custom.cta_description}}{{else}}{{@site.description}}{{/if}}
+      </div>
+      
+      {{!-- Subscribe form --}}
+      {{#if @site.members_enabled}}
+        {{#unless @site.members_invite_only}}
+          {{#unless @member}}
+            {{> subscribe-form 
+              form_type="signup"
+              form_style="inline"
+              form_class=""
+              input_class="bg-opaque"
+              input_label="hero-input-label"
+              button_text=(t 'Join now') 
+              button_class="btn--brand btn--gradient uppercase"
+            }}
+          {{/unless}}
+        {{/unless}}
+      {{/if}}
+    </div>
+  {{/if}}
+</div>

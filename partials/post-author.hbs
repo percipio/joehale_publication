@@ -1,0 +1,15 @@
+{{!-- Post author card --}}
+<div class="post-authors content-width m-t-lg">
+  <span class="section-title sm">{{#has author="count:>1"}}{{t "About the authors"}}{{else}}{{t "About the author"}}{{/has}}</span>
+  {{#has author="count:>1"}}
+    <div class="grid authors m-b-lg">
+      {{#foreach authors}}
+        {{> author-card}}
+      {{/foreach}}
+    </div>
+  {{else}}
+    {{#primary_author}}
+      {{> author-card class="wide m-b-lg"}}
+    {{/primary_author}}
+  {{/has}}
+</div>

@@ -1,0 +1,24 @@
+{{!< default}}
+{{!-- Page Hero --}}
+{{#page}} 
+  {{> post-hero 
+    image_style="hidden"
+  }}
+{{else}}
+  <div class="post-hero is-page flex flex-col flex-cc m-b-xl">
+    <h1 class="post-hero__title text-center">{{t "Tags"}}</h1>
+  </div>
+{{/page}}
+
+
+<div class="container wrapper">
+  {{#get "tags" limit="60" include="count.posts" order="count.posts desc"}}
+    <div class="grid grid-tags m-b-xl">
+      {{#foreach tags}}
+        {{#if count.posts}}
+          {{> tag-card}}
+        {{/if}}
+      {{/foreach}}
+    </div>
+  {{/get}}
+</div>

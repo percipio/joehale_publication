@@ -1,0 +1,87 @@
+{{!-- Site header --}}
+<header class="header js-header" {{#if @custom.header_position}}data-header="{{@custom.header_position}}"{{/if}}>
+  <div class="container wrapper flex is-rel header__inner">
+    {{!-- Menu Button --}}
+    <button class="btn-toggle menu__toggle js-menu-open"
+      type="button" title="{{t "Menu"}}" aria-label="{{t "Menu"}}">
+        <span></span>
+        <span></span>
+    </button>
+
+    {{!-- Site logo or title --}}
+    {{#link href=@site.url class="header__brand"}}
+      {{#if @site.logo}}
+        {{!-- Site logo --}}
+        <img class="header__logo"
+          src="{{img_url @site.logo size="s"}}"
+          alt="{{@site.title}}"/>
+      {{else}}
+        {{!-- Site Title --}}
+        <span class="header__title m-0 p-0">{{@site.title}}</span>
+      {{/if}}
+    {{/link}}
+
+    {{!-- Menu --}}
+    <nav class="header__menu flex-1 flex-cc">
+      {{!-- Main navigation --}}
+      {{navigation}}
+    </nav>
+
+    {{!-- Native Search --}}
+    {{#match @custom.search_type "native"}}
+      <button class="btn-toggle header-search__toggle" data-ghost-search title="{{t "Search"}}" aria-label="{{t "Search"}}">
+        {{> icon name="search"}}
+      </button>
+    {{/match}}
+    
+    {{!-- Custom Search --}}
+    {{#match @custom.search_type "custom"}}
+      <div class="header-search">
+        {{!-- Search toggle --}}
+        <button class="btn-toggle header-search__toggle js-search-open"
+          type="button" title="{{t "Search"}}" aria-label="{{t "Search"}}">
+            {{> icon name="search"}}
+        </button>
+
+        {{!-- Search modal --}}
+        <div class="header-search__modal flex-col js-search-modal">
+          <form action="/search/" method="get" class="header-search__form flex flex-1 radius js-search-form">
+            <button class="search__icon" type="submit" title="{{t "Search"}}" aria-label="{{t "Search"}}">
+              {{>icon name="search" size="sm"}}
+            </button>
+            <input type="text" class="header-search__input js-search-input" placeholder="{{t "Search"}}" autocomplete="off" 
+              title="{{t "Search"}}"  aria-label="{{t "Search"}}" aria-labelledby="header-search-input-label"
+              minlength="1" required/>
+          </form>
+          <span class="header-search__helper" id="header-search-input-label">{{t "Press 'Enter' to search"}}</span>
+        </div>
+      </div>
+    {{/match}}
+
+    {{!-- Sign up Button --}}
+    {{#if @site.members_enabled}}
+      {{#if @member.paid}}
+      {{else if @member}}
+        {{!-- nothing --}}
+      {{else}}
+        <a href="/signup/" class="btn signup-link btn--brand radius"{{#if @custom.use_portal_links}} data-portal="signup"{{/if}}>{{t "Subscribe"}}</a>
+      {{/if}}
+    {{/if}}
+
+    {{!-- Member--}}
+    {{#if member}}
+      <button class="header__user--toggle flex-cc js-member-btn{{#if @member}} is-member{{else}} is-not-member{{/if}}" 
+          title="{{#if @member}}{{customer.name}}{{else}}{{t "Menu"}}{{/if}}" 
+          aria-label="{{#if @member}}{{customer.name}}{{else}}{{t "Menu"}}{{/if}}">
+        {{#if @member}}
+          <img class="header__user-avatar" 
+            src="{{@member.avatar_image}}"
+            alt="{{@member.name}}"/>
+        {{/if}}
+        {{>icon name="user" size="md"}}
+      </button>
+    {{/if}}
+
+    {{> member-menu}}
+  </div>
+</header>

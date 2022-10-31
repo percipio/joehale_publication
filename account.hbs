@@ -1,0 +1,50 @@
+{{!< default}}
+
+{{!-- Page hero --}}
+{{#page}}
+  {{> post-hero 
+    image_style="hidden"
+  }}
+{{else}}
+  <div class="post-hero is-page flex flex-col flex-cc m-b-xl">
+    <h1 class="post-hero__title text-center m-b">{{t "Your account"}}</h1>
+  </div>
+{{/page}}
+
+<div class="container wrapper" data-paid-membership="{{#get "tiers" filter="type:paid+visibility:public" limit="1" as |tiers|}}{{#if tiers}}true{{else}}false{{/if}}{{/get}}">
+  {{#if @member.paid}}
+    {{!-- Logged in, paying member: Show account info --}}
+    <div class="member content-width text-acc m-b-lg">
+      {{#foreach @member.subscriptions}}
+        {{!-- Show the member info --}}
+        {{#if @first}}
+          {{> member-profile}}
+        {{/if}}
+        
+        {{!-- Show the member subscription  --}}
+        {{> member-subscription}}
+      {{/foreach}}
+    </div>
+
+  {{else if @member}}
+
+    {{!-- Member profile --}}
+    <div class="member content-width text-acc m-b-lg">
+      {{!-- Show the member info --}}
+      {{> member-profile}}
+
+      {{!-- Show the member subscription  --}}
+      {{> member-subscription}}
+    </div>
+    
+    {{!-- Members tiers --}}
+    <h3 class="text-center m-t-lg m-b is-membership-upgrade">{{t "Choose a plan"}}</h3>
+    {{> member-tiers type="paid"}}
+
+  {{else}}
+
+    {{!-- Not logged in: Redirect to signin --}}
+    <script>window.location = '{{@site.url}}/signin/';</script>
+
+  {{/if}}
+</div>

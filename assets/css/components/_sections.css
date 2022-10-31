@@ -1,0 +1,115 @@
+/* Sections */
+.main {
+  flex: 1;
+  width: 100%;
+}
+
+/* General section style */
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+
+  &-title {
+    position: relative;
+    display: flex;
+    margin-bottom: 0.75em;
+    font-size: calc(0.1vw + 0.9rem);
+    line-height: 1;
+    color: var(--color-text-acc);
+    font-weight: var(--font-weight-bold);
+    opacity: 0.75;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+
+    &:before {
+      content: "";
+      background: var(--color-transparent);
+      border-radius: 50%;
+      height: 10px;
+      width: 10px;
+      border: 2.5px solid var(--color-brand);
+      margin-right: 5px;
+    }
+
+    i { 
+      text-transform: capitalize; 
+      margin: 0 5px;
+      font-weight: var(--font-weight-base);
+    }
+
+    &.sm { 
+      font-size: calc(0.1vw + 0.8rem); 
+
+      &:before {
+        height: 9px;
+        width: 9px;
+        border-width: 2.5px;
+        margin-right: 4px;
+      }
+    }
+
+    &.lg { 
+      font-size: calc(0.2vw + 0.9rem); 
+
+      &:before {
+        height: 12px;
+        width: 12px;
+        border-width: 3px;
+        margin-right: 6px;
+      }
+    }
+  }
+}
+
+/* CTA */
+.section-cta {
+  padding-top: 6em;
+  padding-bottom: 6em;
+
+  &__content { max-width: 40rem; }
+
+  &__title { 
+    font-size: calc(1.2rem + 1.5vmin);
+    @media (--mq-sm) { text-align: center; }
+  }
+
+  &__description { 
+    margin-bottom: 1.25em; 
+    font-size: calc(1rem + 0.3vmin);
+    @media (--mq-sm) { text-align: center; }
+  }
+
+  .subscribe-form { max-width: 32rem; }
+
+  &:before {
+    content: "";
+    position: absolute;
+    width: max(20vw, 50rem);
+    height: max(20vw, 24rem);
+    max-width: 100%;
+    z-index: -1;
+    border-radius: 50%;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+  }
+}
+
+.err {
+  max-width: 36rem;
+  margin: 2em auto;
+  padding: 2em;
+  border: 1px dashed var(--color-border);
+  border-radius: var(--global-radius);
+
+  &__description { margin-bottom: 1.25em; }
+}
+
+/* Dark theme */
+@mixin darktheme {
+  .section-cta:before { opacity: 0.1; }
+}
+

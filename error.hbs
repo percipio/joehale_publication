@@ -1,0 +1,34 @@
+{{!< default}}
+
+<div class="container wrapper">
+  {{!-- Error page --}}
+  <div class="err flex flex-cc flex-col m-b-xl">
+    <h1 class="m-b-sm">{{statusCode}}</h1>
+    <div class="err__content">
+      <p class="err__description text-11 opacity-080 text-acc-3 text-center">
+        {{message}}
+      </p>
+
+      {{!-- Links to home and contact page --}}
+      <div class="err__links flex flex-cc">
+        {{#link href="javascript:history.back()" class="btn btn--bordered m-r"}}{{t "Back"}}{{/link}}
+        {{#link href=@site.url class="btn btn--bordered m-r"}}{{t "Home"}}{{/link}}
+      </div>
+    </div>
+  </div>
+
+  <div class="err__recommend">
+    {{!-- Recent posts --}}
+    {{#get "posts" include="tags,authors,tiers" limit="3"}}
+      {{#if posts}}
+        <span class="section-title">{{t "Recent posts"}}</span>
+
+        <div class="grid post-feed auto m-b-xl" data-layout="grid">
+          {{#foreach posts}}
+            {{> post-card }}
+          {{/foreach}}
+        </div>
+      {{/if}}
+    {{/get}}
+  </div>
+</div>

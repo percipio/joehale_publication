@@ -1,0 +1,35 @@
+{{!-- Comments --}}
+{{^has tag="#nocomment"}} {{!-- don't render comments if post has #nocomment tag --}}
+  {{#match @custom.comment_plugin "!=" "None"}}
+    <div class="post-comments content-width m-b-lg">
+      <div class="section-title sm">{{t "Comments"}}</div>
+      <div class="comments bg-default radius flex flex-col p-lg {{@custom.comment_plugin}}" id="comments">
+        {{!-- Check comment plugin settings in Admin UI --}}
+        {{#if @custom.comment_plugin}}
+          {{!-- Native comments --}}
+          {{#match @custom.comment_plugin "Native"}}
+            {{comments 
+              title=""
+              count=false
+              mode=auto
+            }}
+          {{/match}}
+
+          {{!-- Cove comments --}}
+          {{#match @custom.comment_plugin "Cove"}}
+            {{> comments-cove}}
+          {{/match}}
+
+          {{!-- Disqus Comments --}}
+          {{#match @custom.comment_plugin "Disqus"}}
+            {{#if @site.members_enabled}}
+              {{#unless @site.members_invite_only}}
+                {{> comments-disqus}}
+              {{/unless}}
+            {{/if}}
+          {{/match}}
+        {{/if}}
+      </div>
+    </div>
+  {{/match}}
+{{/has}}
